@@ -1,9 +1,12 @@
 <template>
   <div class="container">
     <div class="row register-page">
+
       <div>
         {{ errorMessage }}
       </div>
+      <div v-for="error of errors" v-bind:key="error">{{ error }}</div>
+
       <form class="col s12" id="reg-form">
         <div class="row">
           <div>{{ errorMessage }}</div>
@@ -80,6 +83,8 @@ import axios from "axios";
  */
 @Component
 export default class RegisterAdmin extends Vue {
+  // 入力値のエラー
+  private errors: Array<string> = [];
   // 姓
   private lastName = "";
   // 名
@@ -99,6 +104,20 @@ export default class RegisterAdmin extends Vue {
    * @returns Promiseオブジェクト
    */
   async registerAdmin(): Promise<void> {
+    // エラーチェック
+    if (this.lastName === "" || this.firstName === "") {
+      this.errors.push("姓または名が入力されていません");
+    }
+    if (this.mailAddress === "") {
+      this.errors.push("メールアドレスが入力されていません");
+    }
+    if (this.password === "") {
+      this.errors.push("パスワードが入力されていません");
+    }
+    if (this.errors.length > 0) {
+      return;
+    }
+
     // 管理者登録処理
     const response = await axios.post(`${config.EMP_WEBAPI_URL}/insert`, {
       name: this.lastName + " " + this.firstName,
