@@ -63,7 +63,7 @@
             <tr>
               <th nowrap>給料</th>
               <td>
-                <span v-html="currentEmployee.salary.toLocaleString()"></span>円
+                <span v-html="currentEmployee.commaDelimited"></span>円
               </td>
             </tr>
             <tr>
