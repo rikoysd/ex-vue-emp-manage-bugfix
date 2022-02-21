@@ -6,6 +6,7 @@
       </div>
       <form class="col s12" id="reg-form">
         <div class="row">
+          <div>{{ errorMessage }}</div>
           <div class="input-field col s6">
             <input
               id="last_name"
@@ -105,8 +106,9 @@ export default class RegisterAdmin extends Vue {
       password: this.password,
     });
     console.dir("response:" + JSON.stringify(response));
-    this.$router.push("/loginAdmin");
-    if (response.data.status !== "success") {
+    if (response.data.status === "success") {
+      this.$router.push("/loginAdmin");
+    } else {
       this.errorMessage = "登録できませんでした";
     }
   }
