@@ -34,7 +34,7 @@
             </tr>
             <tr>
               <th nowrap>入社日</th>
-              <td><span v-html="dateFormat"></span></td>
+              <td><span v-html="currentEmployee.dateFormat"></span></td>
             </tr>
             <tr>
               <th nowrap>メールアドレス</th>
@@ -106,7 +106,6 @@ import { Component, Vue } from "vue-property-decorator";
 import config from "@/const/const";
 import { Employee } from "@/types/employee";
 import axios from "axios";
-import { format } from "date-fns";
 
 /**
  * 従業員詳細を表示する画面.
@@ -136,8 +135,6 @@ export default class EmployeeDetail extends Vue {
   private currentEmployeeImage = "";
   // 扶養人数
   private currentDependentsCount = 0;
-  // フォーマットを変更した日付
-  private dateFormat = format(this.currentEmployee.hireDate, "yyyy年MM月dd日");
 
   /**
    * VuexストアのGetter経由で受け取ったリクエストパラメータのIDから１件の従業員情報を取得する.
