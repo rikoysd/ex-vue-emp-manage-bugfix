@@ -105,8 +105,7 @@ export default class RegisterAdmin extends Vue {
       password: this.password,
     });
     console.dir("response:" + JSON.stringify(response));
-
-    this.$router.push("/employeeList");
+    this.$router.push("/loginAdmin");
     if (response.data.status !== "success") {
       this.errorMessage = "登録できませんでした";
     }
