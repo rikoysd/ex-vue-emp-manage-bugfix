@@ -32,6 +32,10 @@ export class Employee {
     private _dependentsCount: number
   ) {}
 
+  /**
+   * カンマ区切り表記を返す.
+   * @returns カンマ区切りの数値
+   */
   public get commaDelimited():string{
     return this._salary.toLocaleString();
   }
