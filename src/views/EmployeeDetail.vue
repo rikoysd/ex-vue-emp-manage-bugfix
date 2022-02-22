@@ -122,7 +122,7 @@ export default class EmployeeDetail extends Vue {
     "XXXX",
     "/noImage.png",
     "XXXX",
-    new Date(2020, 0, 1),
+    new Date(),
     "XXXX",
     "XXXX",
     "XXXX",
@@ -152,8 +152,11 @@ export default class EmployeeDetail extends Vue {
     const employeeId = parseInt(this.$route.params.id);
 
     // VuexストアのGetter、getEmployeeById()メソッドに先ほど取得したIDを渡し、１件の従業員情報を取得し、戻り値をcurrentEmployee属性に代入する
-    this.currentEmployee = this.$store.getters.getEmployeeById(employeeId);
+    //リロードする際はWebAPIから１件従業員情報を持ってくるので、getterを経由する必要はない。
+    // this.currentEmployee = this.$store.getters.getEmployeeById(employeeId);
 
+    //response.dataはstring型で返ってくる（console.dirで確認）
+    //hireDateはDate型であるため、Date型にインスタンス化する必要がある。
     const response = await axios.get(
       `${config.EMP_WEBAPI_URL}/employee/${employeeId}`
     );
@@ -163,7 +166,7 @@ export default class EmployeeDetail extends Vue {
       response.data.employee.name,
       response.data.employee.image,
       response.data.employee.gender,
-      response.data.employee.hireDate,
+      new Date(response.data.employee.hireDate),
       response.data.employee.mailAddress,
       response.data.employee.zipCode,
       response.data.employee.address,
