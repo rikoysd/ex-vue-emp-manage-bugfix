@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="row register-page">
-
       <div>
         {{ errorMessage }}
       </div>
@@ -57,6 +56,19 @@
           </div>
         </div>
         <div class="row">
+          <div class="input-field col s12">
+            <input
+              id="againPassword"
+              type="password"
+              class="validate"
+              minlength="8"
+              v-model="againPassword"
+              required
+            />
+            <label for="againPassword">確認用パスワード</label>
+          </div>
+        </div>
+        <div class="row">
           <div class="input-field col s6">
             <button
               class="btn btn-large btn-register waves-effect waves-light"
@@ -95,6 +107,8 @@ export default class RegisterAdmin extends Vue {
   private password = "";
   // エラーメッセージ
   private errorMessage = "";
+  // 確認用パスワード
+  private againPassword = "";
 
   /**
    * 管理者情報を登録する.
@@ -113,6 +127,12 @@ export default class RegisterAdmin extends Vue {
     }
     if (this.password === "") {
       this.errors.push("パスワードが入力されていません");
+    }
+    if (this.againPassword === "") {
+      this.errors.push("確認用パスワードが入力されていません");
+    }
+    if (this.password !== this.againPassword) {
+      this.errors.push("パスワードが一致していません");
     }
     if (this.errors.length > 0) {
       return;
