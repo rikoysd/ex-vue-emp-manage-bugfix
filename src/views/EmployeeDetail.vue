@@ -17,7 +17,7 @@
             <tr>
               <th nowrap>従業員名</th>
               <td>
-                {{ currentEmployee.name }}
+                <span>{{ currentEmployee.name }}</span>
               </td>
             </tr>
             <tr>
@@ -29,45 +29,50 @@
             <tr>
               <th nowrap>性別</th>
               <td>
-                {{ currentEmployee.gender }}
+                <span>{{ currentEmployee.gender }}</span>
               </td>
             </tr>
             <tr>
               <th nowrap>入社日</th>
-              <td>{{ currentEmployee.hireDate }}</td>
+              <td>
+                <span> {{ currentEmployee.hireDate }}</span>
+              </td>
             </tr>
             <tr>
               <th nowrap>メールアドレス</th>
               <td>
-                {{ currentEmployee.mailAddress }}
+                <span>{{ currentEmployee.mailAddress }} </span>
               </td>
             </tr>
             <tr>
               <th nowrap>郵便番号</th>
               <td>
-                {{ currentEmployee.zipCode }}
+                <span>{{ currentEmployee.zipCode }}</span>
               </td>
             </tr>
             <tr>
               <th nowrap>住所</th>
               <td>
-                {{ currentEmployee.address }}
+                <span>{{ currentEmployee.address }}</span>
               </td>
             </tr>
             <tr>
               <th nowrap>電話番号</th>
               <td>
-                {{ currentEmployee.telephone }}
+                <span>{{ currentEmployee.telephone }}</span>
               </td>
             </tr>
             <tr>
               <th nowrap>給料</th>
-              <td>{{ currentEmployee.salary }}円</td>
+              <td>
+                <span>{{ currentEmployee.salary }}</span
+                >円
+              </td>
             </tr>
             <tr>
               <th nowrap>特性</th>
               <td>
-                {{ currentEmployee.characteristics }}
+                <span>{{ currentEmployee.characteristics }}</span>
               </td>
             </tr>
             <tr>
