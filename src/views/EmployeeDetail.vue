@@ -151,27 +151,28 @@ export default class EmployeeDetail extends Vue {
   async created(): Promise<void> {
     // 送られてきたリクエストパラメータのidをnumberに変換して取得する
     const employeeId = parseInt(this.$route.params.id);
+
+    // VuexストアのGetter、getEmployeeById()メソッドに先ほど取得したIDを渡し、１件の従業員情報を取得し、戻り値をcurrentEmployee属性に代入する
+    this.currentEmployee = this.$store.getters.getEmployeeById(employeeId);
+
     const response = await axios.get(
       `${config.EMP_WEBAPI_URL}/employee/${employeeId}`
     );
     console.dir("response:" + JSON.stringify(response));
-    const responseEmployee = response.data.employee;
     this.currentEmployee = new Employee(
-      responseEmployee.id,
-      responseEmployee.name,
-      responseEmployee.image,
-      responseEmployee.gender,
-      responseEmployee.hireDate,
-      responseEmployee.mailAddress,
-      responseEmployee.zipCode,
-      responseEmployee.address,
-      responseEmployee.telephone,
-      responseEmployee.salary,
-      responseEmployee.characteristics,
-      responseEmployee.dependentsCount
+      response.data.employee.id,
+      response.data.employee.name,
+      response.data.employee.image,
+      response.data.employee.gender,
+      response.data.employee.hireDate,
+      response.data.employee.mailAddress,
+      response.data.employee.zipCode,
+      response.data.employee.address,
+      response.data.employee.telephone,
+      response.data.employee.salary,
+      response.data.employee.characteristics,
+      response.data.employee.dependentsCount
     );
-    // VuexストアのGetter、getEmployeeById()メソッドに先ほど取得したIDを渡し、１件の従業員情報を取得し、戻り値をcurrentEmployee属性に代入する
-    this.currentEmployee = this.$store.getters.getEmployeeById(employeeId);
 
     // 今取得した従業員情報から画像パスを取り出し、imgディレクトリの名前を前に付与(文字列連結)してcurrentEmployeeImage属性に代入する
     this.currentEmployeeImage = `${config.EMP_WEBAPI_URL}/img/${this.currentEmployee.image}`;
