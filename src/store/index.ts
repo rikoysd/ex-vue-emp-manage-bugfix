@@ -59,7 +59,7 @@ export default new Vuex.Store({
             employee.name,
             employee.image,
             employee.gender,
-            new Date(employee.hireDate),
+            employee.hireDate,
             employee.mailAddress,
             employee.zipCode,
             employee.address,
@@ -89,7 +89,13 @@ export default new Vuex.Store({
      * @returns 従業員一覧情報「
      */
     getAllEmployees(state) {
-      return state.employees;
+      return state.employees.sort(function(a, b) {
+        if (b.hireDate < a.hireDate) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
     },
     /**
      * IDから従業員を検索し返す.
