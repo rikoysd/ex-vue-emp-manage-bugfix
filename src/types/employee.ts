@@ -33,6 +33,11 @@ export class Employee {
     private _dependentsCount: number
   ) {}
 
+
+  public get commaDelimited():string{
+    return this._salary.toLocaleString();
+  }
+
   /**
    * フォーマットを変更した日付を返す.
    * @returns フォーマットを変更
