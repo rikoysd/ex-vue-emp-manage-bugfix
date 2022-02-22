@@ -4,7 +4,6 @@ import { Employee } from "@/types/employee";
 import config from "@/const/const";
 // 使うためには「npm install axios --save」を行う
 import axios from "axios";
-import be from "date-fns/locale/be/index";
 
 Vue.use(Vuex);
 
