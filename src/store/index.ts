@@ -4,6 +4,7 @@ import { Employee } from "@/types/employee";
 import config from "@/const/const";
 // 使うためには「npm install axios --save」を行う
 import axios from "axios";
+import be from "date-fns/locale/be/index";
 
 Vue.use(Vuex);
 
@@ -70,6 +71,15 @@ export default new Vuex.Store({
           )
         );
       }
+      //入社日の新しい順に配列を並び替える
+      //stateの中身を操作したいときはgettersではなくmutationsに
+      state.employees.sort(function(a, b) {
+        if (a.hireDate < b.hireDate) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
     },
   }, // end mutations
   getters: {
