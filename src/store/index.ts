@@ -70,6 +70,15 @@ export default new Vuex.Store({
           )
         );
       }
+      //入社日の新しい順に配列を並び替える
+      //stateの中身を操作したいときはgettersではなくmutationsに
+      state.employees.sort(function(a, b) {
+        if (a.hireDate < b.hireDate) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
     },
   }, // end mutations
   getters: {
